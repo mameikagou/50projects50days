@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Zhi Mang Xing", cursive;
+        font-weight: 400;
+        font-style: normal;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        width: 90vw;
+      }
+
+      .panel {
+        /* 先宽后高, 高度占满, 宽度自适应, 从而保持原始宽高比 */
+        background-size: auto 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 80vh;
+        border-radius: 50px;
+        cursor: pointer;
+        /* 表示占父级元素剩余空间的一半 */
+        flex: 0.5;
+        margin: 10px;
+        position: relative;
+        /* 第一个是指定的属性, 第二个是持续的时间, 第三个是动画函数 */
+        transition: flex 0.7s ease-in;
+      }
+
+      .panel h3 {
+        position: absolute;
+        bottom: 10px;
+        left: 25px;
+        margin: 0;
+        opacity: 0;
+        color: aliceblue;
+      }
+
+      .panel.active {
+        flex: 5;
+      }
+
+      .panel.active h3 {
+        opacity: 1;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          width: 100vw;
+        }
+
+        /* 表示匹配父级元素中, 第四和第五个类名为".panel"的元素 */
+        /* 让他们在比较小的时候不显示 */
+        .panel:nth-of-type(4),
+        .panel:nth-of-type(5) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div
+        class="panel active"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <h3>Explore The World</h3>
+      </div>
+      <div
+        class="panel"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <h3>Wild Forest</h3>
+      </div>
+      <div
+        class="panel"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80');
+        "
+      >
+        <h3>Sunny Beach</h3>
+      </div>
+      <div
+        class="panel"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');
+        "
+      >
+        <h3>City on Winter</h3>
+      </div>
+      <div
+        class="panel"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <h3>Mountains - Clouds</h3>
+      </div>
+    </div>
+    <script>
+      // 注意这里有ALL, 并且有逗号
+      const panels = document.querySelectorAll(".panel");
+
+      panels.forEach((panel) => {
+        panel.addEventListener("click", () => {
+          removeActiveClasses();
+          panel.classList.add("active");
+        });
+      });
+
+      const removeActiveClasses = () => {
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+      };
+
+      /** 
+         * add(class1, class2, ...): 添加一个或多个类名到元素的类列表中。
+remove(class1, class2, ...): 从元素的类列表中移除一个或多个类名。
+toggle(class, force): 如果类名存在，则移除它；如果不存在，则添加它。如果 force 参数为 true，则强制添加或移除类名。
+contains(class): 返回一个布尔值，表示元素的类列表中是否存在指定的类名。
+        */
+    </script>
+  </body>
+</html>
