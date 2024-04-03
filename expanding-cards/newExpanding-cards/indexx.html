@@ -43,6 +43,7 @@
         margin: 10px;
         position: relative;
         /* 第一个是指定的属性, 第二个是持续的时间, 第三个是动画函数 */
+        /* 指定flex改变的时候的动画 */
         transition: flex 0.7s ease-in;
       }
 
@@ -144,6 +145,21 @@ remove(class1, class2, ...): 从元素的类列表中移除一个或多个类名
 toggle(class, force): 如果类名存在，则移除它；如果不存在，则添加它。如果 force 参数为 true，则强制添加或移除类名。
 contains(class): 返回一个布尔值，表示元素的类列表中是否存在指定的类名。
         */
+// 关于添加和移除类的另一种方法; 
+        let divs = document.querySelectorAll(".tabs > div");
+  let imgs = document.querySelectorAll("#content > div");
+
+  for (let i = 0; i < divs.length; i++) {
+    divs[i].addEventListener("click", () => {
+      for (let j = 0; j < divs.length; j++) {
+        divs[j].classList.remove("active");
+        imgs[j].classList.remove("active");
+      }
+
+      divs[i].classList.add("active");
+      imgs[i].classList.add("active");
+    });
+  }
     </script>
   </body>
 </html>
